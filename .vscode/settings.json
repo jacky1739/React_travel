@@ -1,0 +1,6 @@
+// 為了模組化的加載css文件, 通過.vscode改變visual studio code改變默認的配置
+// 就可以使用模塊化的方式來載入css文件
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
+}
