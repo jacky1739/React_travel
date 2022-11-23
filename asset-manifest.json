@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/React_travel/static/css/main.ecc46059.css",
-    "main.js": "/React_travel/static/js/main.04bd707b.js",
+    "main.js": "/React_travel/static/js/main.1a958a23.js",
     "static/media/carousel_3.jpg": "/React_travel/static/media/carousel_3.39c09c7100584146487d.jpg",
     "static/media/sider_2019_02-04.png": "/React_travel/static/media/sider_2019_02-04.600e70c8481a31451832.png",
     "static/media/carousel_2.jpg": "/React_travel/static/media/carousel_2.b79314aaa2a9db2d5fc0.jpg",
@@ -11,10 +11,10 @@
     "static/media/logo.svg": "/React_travel/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/React_travel/index.html",
     "main.ecc46059.css.map": "/React_travel/static/css/main.ecc46059.css.map",
-    "main.04bd707b.js.map": "/React_travel/static/js/main.04bd707b.js.map"
+    "main.1a958a23.js.map": "/React_travel/static/js/main.1a958a23.js.map"
   },
   "entrypoints": [
     "static/css/main.ecc46059.css",
-    "static/js/main.04bd707b.js"
+    "static/js/main.1a958a23.js"
   ]
 }
