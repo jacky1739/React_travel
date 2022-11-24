@@ -39,8 +39,8 @@ const App: React.FC = () => {
           sideImage={sideImage3}
           products={productList3}
         />
-      </div>
       <BusinessPartners />
+      </div>
       <Footer />
     </div>
   );
