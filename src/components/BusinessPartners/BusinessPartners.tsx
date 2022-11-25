@@ -26,7 +26,7 @@ export const BusinessPartners: React.FC = () => {
             return (
               <Col span={6} key={index}>
                 <img
-                  src={item.image} alt="" 
+                  src={item.image} alt={item.title}
                   style={{
                     width: '80%',
                     display: 'block',
