@@ -30,8 +30,7 @@ export const BusinessPartners: React.FC = () => {
                   style={{
                     width: '80%',
                     display: 'block',
-                    marginLeft: 'auto',
-                    marginRight: 'auto'
+                    margin: '0 auto'
                   }}
                 />
               </Col>
