@@ -9,7 +9,8 @@ const App: React.FC = () => {
     <div className={styles.App}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomePage />} /> {/* 新的element屬性可以允許傳入元件 */} 
+          <Route path="/React_travel" element={<HomePage />} /> {/* 新的element屬性可以允許傳入元件 */} 
+          <Route path="/signin" element={<h1>登入頁面</h1>} />
         </Routes>
       </BrowserRouter>
     </div>
