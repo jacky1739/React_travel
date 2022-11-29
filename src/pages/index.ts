@@ -1,1 +1,3 @@
-export * from './home'
+export * from './Home'
+export * from './Register'
+export * from './SignIn'
