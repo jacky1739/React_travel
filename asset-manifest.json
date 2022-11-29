@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.e52dbb38.css",
-    "main.js": "/static/js/main.90d21045.js",
-    "static/media/carousel_3.jpg": "/static/media/carousel_3.39c09c7100584146487d.jpg",
-    "static/media/sider_2019_02-04.png": "/static/media/sider_2019_02-04.600e70c8481a31451832.png",
-    "static/media/carousel_2.jpg": "/static/media/carousel_2.b79314aaa2a9db2d5fc0.jpg",
-    "static/media/sider_2019_12-09.png": "/static/media/sider_2019_12-09.d016ce66efeb428c293a.png",
-    "static/media/sider_2019_02-04-2.png": "/static/media/sider_2019_02-04-2.e8593237f5561ecd07bc.png",
-    "static/media/carousel_1.jpg": "/static/media/carousel_1.8a3dd5919c9be2269384.jpg",
-    "static/media/follow-826033_640.png": "/static/media/follow-826033_640.0d3228756da5a8540cf3.png",
-    "static/media/facebook-807588_640.png": "/static/media/facebook-807588_640.c91f8a1f61b2238f55fc.png",
-    "static/media/icon-720944_640.png": "/static/media/icon-720944_640.66777c45c8f7894b4735.png",
-    "static/media/microsoft-80658_640.png": "/static/media/microsoft-80658_640.7799e3ace7274f6de01f.png",
-    "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/index.html",
-    "main.e52dbb38.css.map": "/static/css/main.e52dbb38.css.map",
-    "main.90d21045.js.map": "/static/js/main.90d21045.js.map"
+    "main.css": "/React_travel/static/css/main.e52dbb38.css",
+    "main.js": "/React_travel/static/js/main.423a2898.js",
+    "static/media/carousel_3.jpg": "/React_travel/static/media/carousel_3.39c09c7100584146487d.jpg",
+    "static/media/sider_2019_02-04.png": "/React_travel/static/media/sider_2019_02-04.600e70c8481a31451832.png",
+    "static/media/carousel_2.jpg": "/React_travel/static/media/carousel_2.b79314aaa2a9db2d5fc0.jpg",
+    "static/media/sider_2019_12-09.png": "/React_travel/static/media/sider_2019_12-09.d016ce66efeb428c293a.png",
+    "static/media/sider_2019_02-04-2.png": "/React_travel/static/media/sider_2019_02-04-2.e8593237f5561ecd07bc.png",
+    "static/media/carousel_1.jpg": "/React_travel/static/media/carousel_1.8a3dd5919c9be2269384.jpg",
+    "static/media/follow-826033_640.png": "/React_travel/static/media/follow-826033_640.0d3228756da5a8540cf3.png",
+    "static/media/facebook-807588_640.png": "/React_travel/static/media/facebook-807588_640.c91f8a1f61b2238f55fc.png",
+    "static/media/icon-720944_640.png": "/React_travel/static/media/icon-720944_640.66777c45c8f7894b4735.png",
+    "static/media/microsoft-80658_640.png": "/React_travel/static/media/microsoft-80658_640.7799e3ace7274f6de01f.png",
+    "static/media/logo.svg": "/React_travel/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/React_travel/index.html",
+    "main.e52dbb38.css.map": "/React_travel/static/css/main.e52dbb38.css.map",
+    "main.423a2898.js.map": "/React_travel/static/js/main.423a2898.js.map"
   },
   "entrypoints": [
     "static/css/main.e52dbb38.css",
-    "static/js/main.90d21045.js"
+    "static/js/main.423a2898.js"
   ]
 }
