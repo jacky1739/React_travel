@@ -15,6 +15,8 @@ interface MatchParams2 {
 
 export const DetailPage: React.FC = () => {
   // let params = useParams<'touristRouteId'>()
+  // 因為useParams只能傳入string
+  // 如果要使用interface就需要加 keyof
   let params = useParams<keyof MatchParams2>()
 
   return (
