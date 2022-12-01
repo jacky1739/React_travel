@@ -53,20 +53,20 @@ export const ProductCollection: React.FC<PropsType> = ({title, sideImage, produc
               <Row>
                 <Col span={12}>
                   <ProductImage 
-                    id={products[0].id}
+                    id={products[3].id}
                     size={"small"}
-                    title={products[0].title}
-                    imageSrc={products[0].touristRoutePictures[0].url}
-                    price={products[0].price}
+                    title={products[3].title}
+                    imageSrc={products[3].touristRoutePictures[0].url}
+                    price={products[3].price}
                   />
                 </Col>
                 <Col span={12}>
                   <ProductImage 
-                    id={products[0].id}
+                    id={products[4].id}
                     size={"small"}
-                    title={products[0].title}
-                    imageSrc={products[0].touristRoutePictures[0].url}
-                    price={products[0].price}
+                    title={products[4].title}
+                    imageSrc={products[4].touristRoutePictures[0].url}
+                    price={products[4].price}
                   />
                 </Col>
               </Row>
@@ -75,38 +75,38 @@ export const ProductCollection: React.FC<PropsType> = ({title, sideImage, produc
           <Row>
             <Col span={6}>
             <ProductImage 
-                    id={products[0].id}
+                    id={products[5].id}
                     size={"small"}
-                    title={products[0].title}
-                    imageSrc={products[0].touristRoutePictures[0].url}
-                    price={products[0].price}
+                    title={products[5].title}
+                    imageSrc={products[5].touristRoutePictures[0].url}
+                    price={products[5].price}
                   />
             </Col>
             <Col span={6}>
               <ProductImage 
-                id={products[0].id}
+                id={products[6].id}
                 size={"small"}
-                title={products[0].title}
-                imageSrc={products[0].touristRoutePictures[0].url}
-                price={products[0].price}
+                title={products[6].title}
+                imageSrc={products[6].touristRoutePictures[0].url}
+                price={products[6].price}
               />
             </Col>
             <Col span={6}>
               <ProductImage 
-                id={products[0].id}
+                id={products[7].id}
                 size={"small"}
-                title={products[0].title}
-                imageSrc={products[0].touristRoutePictures[0].url}
-                price={products[0].price}
+                title={products[7].title}
+                imageSrc={products[7].touristRoutePictures[0].url}
+                price={products[7].price}
               />
             </Col>
             <Col span={6}>
               <ProductImage 
-                id={products[0].id}
+                id={products[8].id}
                 size={"small"}
-                title={products[0].title}
-                imageSrc={products[0].touristRoutePictures[0].url}
-                price={products[0].price}
+                title={products[8].title}
+                imageSrc={products[8].touristRoutePictures[0].url}
+                price={products[8].price}
               />
             </Col>
           </Row>

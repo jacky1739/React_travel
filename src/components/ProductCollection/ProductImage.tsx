@@ -1,5 +1,6 @@
 import React from 'react'
 import { Image, Typography } from 'antd'
+import { Link } from 'react-router-dom'
 
 interface PropsType {
   id: string | number
@@ -12,7 +13,8 @@ interface PropsType {
 export const ProductImage: React.FC<PropsType> = ({id, size, imageSrc, price, title}) => {
 
   return (
-    <div>
+    // Link 就是一個 a 標籤加上history.push的結構
+    <Link to={`/detail/${id}`}>
       {size === 'large' ? (
         <Image src={imageSrc} height={285} width={490} />
       ) : (
@@ -22,6 +24,6 @@ export const ProductImage: React.FC<PropsType> = ({id, size, imageSrc, price, ti
         <Typography.Text>{title.slice(0, 25)}</Typography.Text>
         <Typography.Text type="danger" strong>$ {price} 起</Typography.Text>
       </div>
-    </div>
+    </Link>
   )
 }

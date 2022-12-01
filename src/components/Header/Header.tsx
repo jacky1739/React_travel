@@ -3,31 +3,36 @@ import logo from '../../assets/logo.svg';
 import { Layout, Typography, Input, Menu, Button, Dropdown } from 'antd'
 import { GlobalOutlined } from '@ant-design/icons';
 import styles from './Header.module.css'
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
 
 export const Header: React.FC = () => {
+  const navigate = useNavigate() // 進行頁面的處理
+  const locatioin = useLocation() // 當前的頁面訊息 用來保存路由的狀態
+  const params = useParams()
+
   const language = [
     { key: '1', label: '中文'},
     { key: '2', label: 'English'}
   ]
-    
+
   const menu = [
     { key: "1", label: "旅游首页" },
-        { key: "2", label: "周末游" },
-        { key: "3", label: "跟团游" },
-        { key: "4", label: "自由行" },
-        { key: "5", label: "私家团" },
-        { key: "6", label: "邮轮" },
-        { key: "7", label: "酒店+景点" },
-        { key: "8", label: "当地玩乐" },
-        { key: "9", label: "主题游" },
-        { key: "10", label: "定制游" },
-        { key: "11", label: "游学" },
-        { key: "12", label: "签证" },
-        { key: "13", label: "企业游" },
-        { key: "14", label: "高端游" },
-        { key: "15", label: "爱玩户外" },
-        { key: "16", label: "保险" }
-    ]
+    { key: "2", label: "周末游" },
+    { key: "3", label: "跟团游" },
+    { key: "4", label: "自由行" },
+    { key: "5", label: "私家团" },
+    { key: "6", label: "邮轮" },
+    { key: "7", label: "酒店+景点" },
+    { key: "8", label: "当地玩乐" },
+    { key: "9", label: "主题游" },
+    { key: "10", label: "定制游" },
+    { key: "11", label: "游学" },
+    { key: "12", label: "签证" },
+    { key: "13", label: "企业游" },
+    { key: "14", label: "高端游" },
+    { key: "15", label: "爱玩户外" },
+    { key: "16", label: "保险" }
+  ]
   return(
     <div className={styles['app-header']}>
         {/* top-header */}
@@ -47,8 +52,8 @@ export const Header: React.FC = () => {
             </Dropdown.Button>
           </div>
           <Button.Group className={styles['button-group']}>
-            <Button>註冊</Button>
-            <Button>登入</Button>
+            <Button onClick={() => navigate('/register')}>註冊</Button>
+            <Button onClick={() => navigate('/signin')}>登入</Button>
           </Button.Group>
         </div>
         <Layout.Header className={styles['main-header']}>
