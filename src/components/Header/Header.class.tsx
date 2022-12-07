@@ -4,15 +4,30 @@ import { Layout, Typography, Input, Menu, Button, Dropdown } from 'antd'
 import { GlobalOutlined } from '@ant-design/icons';
 import styles from './Header.module.css'
 import { withRouter, RouteComponentProps } from '../../helpers/withRouter'
+import store from '../../redux/store'
+import { languageState } from '../../redux/languageReducer'
 
-class HeaderComponent extends React.Component<RouteComponentProps>{
+interface State extends languageState {}
+
+class HeaderComponent extends React.Component<RouteComponentProps, State>{
+
+  // 可以在constructor裡面取得store的資料
+  constructor(props) {
+    super(props)
+    const storeState = store.getState()
+    this.state = {
+      language: storeState.language,
+      languageList: storeState.languageList
+    }
+  }
+
   render () {
     const { navigate } = this.props
 
-    const language = [
-      { key: '1', label: '中文'},
-      { key: '2', label: 'English'}
-    ]
+    // const language = [
+    //   { key: '1', label: '中文'},
+    //   { key: '2', label: 'English'}
+    // ]
 
     const menu = [
       { key: "1", label: "旅游首页" },
@@ -43,11 +58,13 @@ class HeaderComponent extends React.Component<RouteComponentProps>{
                 style={{ marginLeft: 15, width: '90%' }}
                 overlay={
                   <Menu 
-                    items={ language }
+                    items={this.state.languageList.map( l => {
+                      return { key: l.code, label: l.name }
+                    })}
                   />}
                 icon={<GlobalOutlined />}
               >
-                  語言
+                { this.state.language === 'zh' ? '中文' : 'English' }
               </Dropdown.Button>
             </div>
             <Button.Group className={styles['button-group']}>
