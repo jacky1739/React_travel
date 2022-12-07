@@ -1,5 +1,7 @@
+// 路由擴展 如何讓Router支援class component
 import { useNavigate, NavigateFunction } from 'react-router-dom'
 
+// 路由的props的typescript定義
 export interface RouteComponentProps {
   navigate: NavigateFunction
 }
