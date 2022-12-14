@@ -26,6 +26,7 @@ class HeaderComponent extends React.Component<RouteComponentProps, State>{
 
   handleStoreChange = () => {
     const storeState = store.getState()
+    // setState 為 state 的更新函數 把store的資料綁定到畫面上
     this.setState({
       language: storeState.language,
       languageList: storeState.languageList
@@ -38,7 +39,7 @@ class HeaderComponent extends React.Component<RouteComponentProps, State>{
       // 處理新語言action
       const action = {
         type: "add_language",
-        payload: { code: "new_lang", name: "新語言"}
+        payload: { code: "new_lang", name: "新語言" }
       }
       store.dispatch(action)
     } else {
