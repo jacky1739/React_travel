@@ -28,6 +28,7 @@ export default (state = defaultState, action) => {
   //   }
   //   return newState
   // }
+  // switch為官方推薦的撰寫方式
   switch(action.type) {
     case "change_language":
       return { ...state, language: action.payload }
