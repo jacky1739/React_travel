@@ -5,8 +5,9 @@ import { GlobalOutlined } from '@ant-design/icons';
 import styles from './Header.module.css'
 import { withRouter, RouteComponentProps } from '../../helpers/withRouter'
 import store from '../../redux/store'
-import { languageState } from '../../redux/languageReducer'
+import { languageState } from '../../redux/language/languageReducer'
 import { withTranslation, WithTranslation } from 'react-i18next'
+import { changeLanguageActionCreator, addLanguageActionCreator } from '../../redux/language/languageActions'
 
 // 將languageState使用State來繼承
 interface State extends languageState {}
@@ -39,16 +40,18 @@ class HeaderComponent extends React.Component<RouteComponentProps & WithTranslat
     console.log(e)
     if (e.key === "new") {
       // 處理新語言action
-      const action = {
-        type: "add_language",
-        payload: { code: "new_lang", name: "新語言" }
-      }
+      // const action = {
+      //   type: "add_language",
+      //   payload: { code: "new_lang", name: "新語言" }
+      // }
+      const action = addLanguageActionCreator("新語言", "new_lang")
       store.dispatch(action)
     } else {
-      const action = {
-        type: "change_language",
-        payload: e.key
-      }
+      // const action = {
+      //   type: "change_language", 
+      //   payload: e.key
+      // }
+      const action = changeLanguageActionCreator(e.key)
       store.dispatch(action)
     }
   }
