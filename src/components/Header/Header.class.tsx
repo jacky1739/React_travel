@@ -4,55 +4,46 @@ import { Layout, Typography, Input, Menu, Button, Dropdown } from 'antd'
 import { GlobalOutlined } from '@ant-design/icons';
 import styles from './Header.module.css'
 import { withRouter, RouteComponentProps } from '../../helpers/withRouter'
-import store from '../../redux/store'
-import { languageState } from '../../redux/language/languageReducer'
+import { RootState } from '../../redux/store'
 import { withTranslation, WithTranslation } from 'react-i18next'
 import { changeLanguageActionCreator, addLanguageActionCreator } from '../../redux/language/languageActions'
+import {  connect } from 'react-redux'
+import { Dispatch } from 'redux'
 
-// 將languageState使用State來繼承
-interface State extends languageState {}
+const mapStateToProps = (state: RootState) => {
+  return {
+    language: state.language,
+    languageList: state.languageList
+  }
+}
 
-class HeaderComponent extends React.Component<RouteComponentProps & WithTranslation, State>{
-
-  // 可以在constructor裡面取得store的資料
-  constructor(props) {
-    super(props)
-    // 將store的資料取出
-    const storeState = store.getState()
-    this.state = {
-      language: storeState.language,
-      languageList: storeState.languageList
+const mapDispatchToProps = (dispatch: Dispatch) => {
+  return {
+    // return 裡面就是每一個 dispatch 的處理函數
+    changeLanguage: (code: "zh" | "en") => {
+      const action = changeLanguageActionCreator(code)
+      dispatch(action)
+    },
+    addLanguage: (name: string, code: string) => {
+      const action = addLanguageActionCreator(name, code)
+      dispatch(action)
     }
-    // 使用訂閱store的方式 要是store的資料有變動的話 此時store就會透過回調函數的方式 把資料推送到元件之中
-    store.subscribe(this.handleStoreChange)
   }
+}
 
-  handleStoreChange = () => {
-    const storeState = store.getState()
-    // setState 為 state 的更新函數 把store的資料綁定到畫面上
-    this.setState({
-      language: storeState.language,
-      languageList: storeState.languageList
-    })
-  }
+type PropsType = RouteComponentProps & // react-router 路由 props 類型
+  WithTranslation & // i18n props 類型
+  ReturnType<typeof mapStateToProps> & // redux store 類型
+  ReturnType<typeof mapDispatchToProps> // redux dispatch 映射類型
+
+class HeaderComponent extends React.Component<PropsType>{
 
   menuClickHandler = (e) => {
     console.log(e)
     if (e.key === "new") {
-      // 處理新語言action
-      // const action = {
-      //   type: "add_language",
-      //   payload: { code: "new_lang", name: "新語言" }
-      // }
-      const action = addLanguageActionCreator("新語言", "new_lang")
-      store.dispatch(action)
+      this.props.addLanguage('新語言', 'new_lang')
     } else {
-      // const action = {
-      //   type: "change_language", 
-      //   payload: e.key
-      // }
-      const action = changeLanguageActionCreator(e.key)
-      store.dispatch(action)
+      this.props.changeLanguage(e.key)
     }
   }
 
@@ -95,7 +86,7 @@ class HeaderComponent extends React.Component<RouteComponentProps & WithTranslat
               overlay={
                 <Menu onClick={this.menuClickHandler}
                   items={[
-                    ...this.state.languageList.map(item => {
+                    ...this.props.languageList.map(item => {
                       return { key: item.code, label: item.name}
                     }),
                     { key: "new", label: t("header.add_new_language") }
@@ -104,7 +95,7 @@ class HeaderComponent extends React.Component<RouteComponentProps & WithTranslat
               }
               icon={<GlobalOutlined />}
             >
-              { this.state.language === "zh" ? "中文" : "English" }
+              { this.props.language === "zh" ? "中文" : "English" }
             </Dropdown.Button>
           </div>
           <Button.Group className={styles['button-group']}>
@@ -125,4 +116,6 @@ class HeaderComponent extends React.Component<RouteComponentProps & WithTranslat
   }
 }
 
-export const Header = withTranslation()(withRouter(HeaderComponent))
+export const Header = connect(mapStateToProps, mapDispatchToProps)(
+  withTranslation()(withRouter(HeaderComponent))
+)
