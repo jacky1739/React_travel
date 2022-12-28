@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header, Footer, Carousel, SideMenu, ProductCollection, BusinessPartners } from '../../components'
+import { Header, Footer, Carousel, SideMenu, ProductCollection } from '../../components'
 import { Row, Col, Typography } from 'antd'
 import styles from './HomePage.module.css'
 
@@ -45,7 +45,9 @@ export const HomePage: React.FC = () =>{
           sideImage={sideImage3}
           products={productList3}
         />
-      <BusinessPartners />
+      {/* <BusinessPartners
+        title={<Typography.Title level={3} type="success">合作夥伴</Typography.Title>}
+      /> */}
       </div>
       <Footer />
     </div>

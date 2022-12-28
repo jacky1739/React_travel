@@ -6,8 +6,13 @@ import image2 from '../../assets/images/icon-720944_640.png'
 import image3 from '../../assets/images/follow-826033_640.png'
 import image4 from '../../assets/images/microsoft-80658_640.png'
 
+interface PropsType {
+  title: JSX.Element
+}
 
-export const BusinessPartners: React.FC = () => {
+export const BusinessPartners: React.FC<PropsType> = ({title}) => {
+  // const { t } = useTranslation()
+
   const companies = [
     { image: image1, title: 'Facebook'},
     { image: image2, title: 'Youtube'},
@@ -18,7 +23,8 @@ export const BusinessPartners: React.FC = () => {
   return (
     <div className={styles.content}>
       <Divider orientation="left">
-        <Typography>合作夥伴</Typography>
+        {/* <Typography.Title level={3}>合作夥伴</Typography.Title> */}
+        {title}
       </Divider>
       <Row>
         {

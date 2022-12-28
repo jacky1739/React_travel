@@ -23,7 +23,8 @@
         "insurance":"Insurance"
     },
     "footer": {
-        "detail" : "All rights reserved @ ReactTravel.com"
+        "detail" : "All rights reserved @ ReactTravel.com",
+        "collaboration": "collaboration"
     },
     "home_page": {
         "hot_recommended": "Hot Recommended",

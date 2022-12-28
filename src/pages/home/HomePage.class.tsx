@@ -44,7 +44,9 @@ class HomePageComponent extends React.Component<WithTranslation> {
                 sideImage={sideImage3}
                 products={productList3}
             />
-            <BusinessPartners />
+            <BusinessPartners
+              title={<Typography.Title level={3} type="success">{t('footer.collaboration')}</Typography.Title>}
+            />
         </div>
         <Footer />
       </div>

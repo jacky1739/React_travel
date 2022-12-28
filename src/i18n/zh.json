@@ -23,7 +23,8 @@
         "insurance":"保险"
     },
     "footer": {
-        "detail" : "版权所有 @ React 旅游网"
+        "detail" : "版权所有 @ React 旅游网",
+        "collaboration": "合作夥伴"
     },
     "home_page": {
         "hot_recommended": "爆款推荐",
