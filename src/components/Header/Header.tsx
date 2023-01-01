@@ -21,7 +21,7 @@ export const Header: React.FC = () => {
   const { t } = useTranslation()
 
   const menuClickHandler = (e) => {
-    console.log('click')
+    console.log(e.key)
     if (e.key === "new") {
       dispatch(addLanguageActionCreator("新語言", "new_lang"))
     } else {

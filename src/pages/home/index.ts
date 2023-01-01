@@ -1,1 +1,1 @@
-export * from './HomePage.class'
+export * from './HomePage'
