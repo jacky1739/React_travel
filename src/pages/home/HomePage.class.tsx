@@ -1,6 +1,6 @@
 import React from 'react'
 import { Header, Footer, Carousel, SideMenu, ProductCollection, BusinessPartners } from '../../components'
-import { Row, Col, Typography } from 'antd'
+import { Row, Col, Typography, Spin } from 'antd'
 import styles from './HomePage.module.css'
 
 // import { productList1, productList2, productList3 } from './mockups'
@@ -14,6 +14,8 @@ import { withTranslation, WithTranslation } from 'react-i18next'
 import axios from 'axios'
 
 interface State {
+  loading: boolean
+  error: string | null
   productList: any[]
 }
 
@@ -21,37 +23,57 @@ class HomePageComponent extends React.Component<WithTranslation, State> {
   constructor(props) {
     super(props)
     this.state = {
+      loading: true,
+      error: null,
       productList: []
     }
   }
 
-  // componentDidMount() {
-  //   axios
-  //   .get("http://123.56.149.216:8080/api/productCollections", {
-  //     headers: {
-  //       "x-icode": "DA4BF817D6402BC7"
-  //     }
-  //   }).then(({data}) => {
-  //     this.setState({
-  //       productList: data
-  //     })
-  //   })
-  // }
-
   async componentDidMount() {
-    const { data } = await axios.get("http://123.56.149.216:8080/api/productCollections", {
-      headers: {
-        "x-icode": "DA4BF817D6402BC7"
+    try {
+      const { data } = await axios.get("http://123.56.149.216:8080/api/productCollections", {
+        headers: {
+          "x-icode": "DA4BF817D6402BC7"
+        }
+      })
+      this.setState({
+        loading: false,
+        error: null,
+        productList: data
+      })
+    } catch (error) {
+      if (error instanceof Error) {
+        this.setState({error: error.message, loading: false})
       }
-    })
-    this.setState(data)
+    }
   }
 
 
   render () {
     // console.log(this.props.t)
     const { t } = this.props
-    const { productList } = this.state
+    const { productList, loading, error } = this.state
+
+    if (loading) {
+      return (
+        <Spin
+          size="large"
+          style={{
+            marginTop: 200,
+            marginBottom: 200,
+            marginLeft: "auto",
+            marginRight: "auto",
+            width: "100%"
+          }}
+        />
+      )
+    }
+
+    if(error) {
+      return (
+        <div>網站出錯: {error}</div>
+      )
+    }
 
     return (
       <div>
