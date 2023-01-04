@@ -7,13 +7,13 @@ import { withRouter, RouteComponentProps } from '../../helpers/withRouter'
 import { RootState } from '../../redux/store'
 import { withTranslation, WithTranslation } from 'react-i18next'
 import { changeLanguageActionCreator, addLanguageActionCreator } from '../../redux/language/languageActions'
-import {  connect } from 'react-redux'
+import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 
 const mapStateToProps = (state: RootState) => {
   return {
-    language: state.language,
-    languageList: state.languageList
+    language: state.language.language,
+    languageList: state.language.languageList
   }
 }
 

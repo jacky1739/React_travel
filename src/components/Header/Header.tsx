@@ -15,8 +15,8 @@ export const Header: React.FC = () => {
   const navigate = useNavigate() // 進行頁面的處理
   const locatioin = useLocation() // 當前的頁面訊息 用來保存路由的狀態
   const params = useParams()
-  const language = useSelector((state) => state.language)
-  const languageList = useSelector((state) => state.languageList)
+  const language = useSelector((state) => state.language.language)
+  const languageList = useSelector((state) => state.language.languageList)
   const dispatch = useDispatch()
   const { t } = useTranslation()
 
