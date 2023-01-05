@@ -4,14 +4,16 @@ import { Layout, Typography, Input, Menu, Button, Dropdown } from 'antd'
 import { GlobalOutlined } from '@ant-design/icons'
 import styles from './Header.module.css'
 import { useParams, useLocation, useNavigate } from 'react-router-dom'
+
 import { useSelector } from '../../redux/hooks'
 import { useDispatch } from 'react-redux'
+
 // import { Dispatch } from 'redux'
 // import { LanguageActionTypes } from '../../redux/language/languageActions'
 import { changeLanguageActionCreator, addLanguageActionCreator } from '../../redux/language/languageActions'
 import { useTranslation } from 'react-i18next'
 
-export const Header: React.FC = () => {
+export const Header = () => {
   const navigate = useNavigate() // 進行頁面的處理
   const locatioin = useLocation() // 當前的頁面訊息 用來保存路由的狀態
   const params = useParams()
