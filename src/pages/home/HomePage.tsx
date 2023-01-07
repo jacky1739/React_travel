@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Header, Footer, Carousel, SideMenu, ProductCollection, BusinessPartners } from '../../components'
 import { Row, Col, Typography, Spin } from 'antd'
 import styles from './HomePage.module.css'
@@ -13,24 +13,31 @@ import { useTranslation } from 'react-i18next'
 
 import axios from 'axios'
 
+import { useSelector } from '../../redux/hooks'
+import { useDispatch } from 'react-redux'
+import {
+  fetchRecommendProductStartActionCreator,
+  fetchRecommendProductSuccessActionCreator,
+  fetchRecommendProductFailActionCreator
+} from '../../redux/recommendProducts/recommendProductsActions'
+
 export const HomePage: React.FC = () => {
   const { t } = useTranslation()
-  const [ productList, setProductList ] = useState<any>([])
-  const [ loading, setLoading ] = useState<boolean>(true)
-  const [ error, setError ] = useState<string | null>(null)
+  const dispatch = useDispatch()
+  const loading = useSelector((state) => state.recommendProducts.loading)
+  const error = useSelector((state) => state.recommendProducts.error)
+  const productList = useSelector((state) => state.recommendProducts.productList)
 
   useEffect(() => {
     const fetchData = async () => {
+      dispatch(fetchRecommendProductStartActionCreator())
       try {
         const { data } = await axios.get("http://123.56.149.216:8080/api/productCollections")
-        console.log(data)
-        setLoading(false)
-        setError(null)
-        setProductList(data)
+        // console.log(data)
+        dispatch(fetchRecommendProductSuccessActionCreator(data))
       } catch (e) {
         if (e instanceof Error) {
-          setError(e.message)
-          setLoading(false)
+          dispatch(fetchRecommendProductFailActionCreator(error.message))
         }
       }
     }
