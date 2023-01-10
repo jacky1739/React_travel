@@ -11,48 +11,36 @@ import sideImage3 from '../../assets/images/sider_2019_02-04-2.png'
 // 小寫的為HOC 大寫為typescript定義
 import { withTranslation, WithTranslation } from 'react-i18next'
 
-import axios from 'axios'
+import { connect } from 'react-redux'
+import { RootState } from '../../redux/store'
+import { initRecommendProductDataActionCreator } from '../../redux/recommendProducts/recommendProductsActions'
 
-interface State {
-  loading: boolean
-  error: string | null
-  productList: any[]
+const mapStateToProps = (state: RootState) => {
+  return {
+    loading: state.recommendProducts.loading,
+    error: state.recommendProducts.error,
+    productList: state.recommendProducts.productList
+  }
 }
 
-class HomePageComponent extends React.Component<WithTranslation, State> {
-  constructor(props) {
-    super(props)
-    this.state = {
-      loading: true,
-      error: null,
-      productList: []
+const mapDispatchToProps = (dispatch) => {
+  return {
+    giveData: () => {
+      dispatch(initRecommendProductDataActionCreator())
     }
   }
+}
 
-  async componentDidMount() {
-    try {
-      const { data } = await axios.get("http://123.56.149.216:8080/api/productCollections", {
-        headers: {
-          "x-icode": "DA4BF817D6402BC7"
-        }
-      })
-      this.setState({
-        loading: false,
-        error: null,
-        productList: data
-      })
-    } catch (error) {
-      if (error instanceof Error) {
-        this.setState({error: error.message, loading: false})
-      }
-    }
+type PropsType = WithTranslation & ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>
+
+class HomePageComponent extends React.Component<PropsType> {
+  componentDidMount() {
+    this.props.giveData()
   }
-
 
   render () {
     // console.log(this.props.t)
-    const { t } = this.props
-    const { productList, loading, error } = this.state
+    const { t, productList, loading, error } = this.props
 
     if (loading) {
       return (
@@ -114,4 +102,4 @@ class HomePageComponent extends React.Component<WithTranslation, State> {
 }
 
 // 第一個小誇號 代表語言所使用的命名空間 第二個才是元件
-export const HomePage = withTranslation()(HomePageComponent)
+export const HomePage = connect(mapStateToProps, mapDispatchToProps)(withTranslation()(HomePageComponent))
