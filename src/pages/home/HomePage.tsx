@@ -11,38 +11,39 @@ import sideImage3 from '../../assets/images/sider_2019_02-04-2.png'
 
 import { useTranslation } from 'react-i18next'
 
-import axios from 'axios'
+// import axios from 'axios'
 
 import { useSelector } from '../../redux/hooks'
 import { useDispatch } from 'react-redux'
 import {
-  fetchRecommendProductStartActionCreator,
-  fetchRecommendProductSuccessActionCreator,
-  fetchRecommendProductFailActionCreator
+  // fetchRecommendProductStartActionCreator,
+  // fetchRecommendProductSuccessActionCreator,
+  // fetchRecommendProductFailActionCreator,
+  giveMeDataActionCreator
 } from '../../redux/recommendProducts/recommendProductsActions'
 
-export const HomePage: React.FC = () => {
+export const HomePage = () => {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
   const loading = useSelector((state) => state.recommendProducts.loading)
   const error = useSelector((state) => state.recommendProducts.error)
   const productList = useSelector((state) => state.recommendProducts.productList)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    const fetchData = async () => {
-      dispatch(fetchRecommendProductStartActionCreator())
-      try {
-        const { data } = await axios.get("http://123.56.149.216:8080/api/productCollections")
-        // console.log(data)
-        dispatch(fetchRecommendProductSuccessActionCreator(data))
-      } catch (e) {
-        if (e instanceof Error) {
-          dispatch(fetchRecommendProductFailActionCreator(error.message))
-        }
-      }
-    }
+    // const fetchData = async () => {
+    //   dispatch(fetchRecommendProductStartActionCreator())
+    //   try {
+    //     const { data } = await axios.get("http://123.56.149.216:8080/api/productCollections")
+    //     dispatch(fetchRecommendProductSuccessActionCreator(data))
+    //   } catch (e) {
+    //     if (e instanceof Error) {
+    //       dispatch(fetchRecommendProductFailActionCreator(error.message))
+    //     }
+    //   }
+    // }
 
-    fetchData()
+    // fetchData()
+    dispatch(giveMeDataActionCreator())
   }, [])
 
   if (loading) {

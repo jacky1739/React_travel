@@ -13,7 +13,7 @@ import { withTranslation, WithTranslation } from 'react-i18next'
 
 import { connect } from 'react-redux'
 import { RootState } from '../../redux/store'
-import { initRecommendProductDataActionCreator } from '../../redux/recommendProducts/recommendProductsActions'
+import { giveMeDataActionCreator } from '../../redux/recommendProducts/recommendProductsActions'
 
 const mapStateToProps = (state: RootState) => {
   return {
@@ -26,7 +26,7 @@ const mapStateToProps = (state: RootState) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     giveData: () => {
-      dispatch(initRecommendProductDataActionCreator())
+      dispatch(giveMeDataActionCreator())
     }
   }
 }

@@ -25,29 +25,29 @@ interface FetchRecommendProductFailAction {
   payload: any
 }
 
-export type RecommendProductActioin = FetchRecommendProductStartAction | FetchRecommendProductSuccessAction | FetchRecommendProductFailAction
+export type RecommendProductAction = FetchRecommendProductStartAction | FetchRecommendProductSuccessAction | FetchRecommendProductFailAction
 
-export const fetchRecommendProductStartActionCreator = (): RecommendProductActioin => {
+export const fetchRecommendProductStartActionCreator = (): RecommendProductAction => {
   return {
     type: FETCH_RECOMMEND_PRODUCTS_START
   }
 }
 
-export const fetchRecommendProductSuccessActionCreator = (data): RecommendProductActioin => {
+export const fetchRecommendProductSuccessActionCreator = (data): RecommendProductAction => {
   return {
     type: FETCH_RECOMMEND_PRODUCTS_SUCCESS,
     payload: data
   }
 }
 
-export const fetchRecommendProductFailActionCreator = (error): RecommendProductActioin => {
+export const fetchRecommendProductFailActionCreator = (error): RecommendProductAction => {
   return {
     type: FETCH_RECOMMEND_PRODUCTS_FAIL,
     payload: error
   }
 }
 
-export const initRecommendProductDataActionCreator = () : ThunkAction<void, RootState, unknown, RecommendProductActioin> => async(dispatch, getState) => {
+export const giveMeDataActionCreator = (): ThunkAction<void, RootState, unknown, RecommendProductAction> => async(dispatch, getState) => {
   dispatch(fetchRecommendProductStartActionCreator())
   try {
     const { data } = await axios.get("http://123.56.149.216:8080/api/productCollections", {

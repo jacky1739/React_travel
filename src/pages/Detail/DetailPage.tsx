@@ -1,5 +1,9 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import axios from 'axios'
+import { Spin } from 'antd'
+import styles from './Detail.module.css'
+import { Header, Footer } from '../../components'
 
 // 大部分情況type和interface是可以交換使用的 但少數不行
 // 例如對某個類型進行重命名定義的時候
@@ -10,16 +14,71 @@ import { useParams } from 'react-router-dom'
 
 interface MatchParams2 {
   touristRouteId: string
-  other: string
 }
 
 export const DetailPage: React.FC = () => {
   // let params = useParams<'touristRouteId'>()
   // 因為useParams只能傳入string
   // 如果要使用interface就需要加 keyof
-  let params = useParams<keyof MatchParams2>()
+  let { touristRouteId } = useParams<keyof MatchParams2>()
+  const [loading, setLoading] = useState<boolean>(true)
+  const [product, setProduct] = useState<any>(null)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true)
+        const { data } = await axios.get(`http://123.56.149.216:8080/api/touristRoutes/${touristRouteId}`)
+        setProduct(data)
+        setLoading(false)
+      } catch (error) {
+        setError(error instanceof Error ? error.message : "error")
+        setLoading(false)
+      }
+    } 
+
+    fetchData()
+  }, [])
+
+  if (loading) {
+    return (
+      <Spin
+        size="large"
+        style={{
+          marginLeft: "auto",
+          marginRight: "auto",
+          marginTop: "200",
+          marginBottom: "200",
+          width: "100%"
+        }}
+      />
+    )
+  }
+
+  if (error) {
+    return <div>網站出錯： {error}</div>
+  }
 
   return (
-    <h1>旅遊詳情頁面, 路線id: {params.touristRouteId} {params.other}</h1>
+    <div>
+      <Header />
+      <div className={styles["page-content"]}>
+        {/* 產品簡介 和 日期選擇 */}
+        <div className={styles["product-intro-container"]}></div>
+        {/* 錨點菜單 */}
+        <div className={styles["product-detail-anchor"]}></div>
+        {/* 錨點菜單 */}
+        <div id='feature' className={styles['product-detail-container']}></div>
+        {/* 費用 */}
+        <div id='fees' className={styles['product-detail-container']}></div>
+        {/* 預定須知 */}
+        <div id='notes' className={styles['product-detail-container']}></div>
+        {/* 商品評價 */}
+        <div id='comments' className={styles['product-detail-container']}></div>
+      </div>
+      <Footer />
+    </div>
   )
+
 }
