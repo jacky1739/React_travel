@@ -132,10 +132,10 @@ export const DetailPage: React.FC = () => {
         <div id='comments' className={styles['product-detail-container']}>
           <Divider orientation={'center'}>
             <Typography.Title level={3}>用戶評論</Typography.Title>
-            <div style={{ margin: 40 }}>
-              <ProductComments data={commentMockData} />
-            </div>
           </Divider>
+          <div style={{ margin: 40 }}>
+            <ProductComments data={commentMockData} />
+          </div>
         </div>
       </div>
       <Footer />
