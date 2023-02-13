@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './App.module.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom' 
-import { HomePage, SignInPage, RegisterPage, DetailPage } from './pages'
+import { HomePage, SignInPage, RegisterPage, DetailPage, SearchPage } from './pages'
 
 const App: React.FC = () => {
 
@@ -13,6 +13,7 @@ const App: React.FC = () => {
           <Route path="/signin" element={<SignInPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/detail/:touristRouteId" element={<DetailPage />} />
+          <Route path="/search/:keyword" element={<SearchPage />} />
           <Route path="*" element={<h1>404 not found 頁面去火星了</h1>} />
         </Routes>
       </BrowserRouter>

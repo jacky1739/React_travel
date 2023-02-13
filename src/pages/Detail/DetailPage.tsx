@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import axios from 'axios'
 import { Spin, Row, Col, DatePicker, Divider, Typography, Anchor, Menu } from 'antd'
 import styles from './Detail.module.css'
 import { Header, Footer, ProductIntro, ProductComments } from '../../components'
 import { commentMockData } from './mockup'
+import { getProductDetail } from '../../redux/productDetail/slice'
+import { useSelector, useAppDispatch } from '../../redux/hooks'
+// import { useDispatch } from 'react-redux'
+
 
 // 大部分情況type和interface是可以交換使用的 但少數不行
 // 例如對某個類型進行重命名定義的時候
@@ -21,27 +24,25 @@ export const DetailPage: React.FC = () => {
   // let params = useParams<'touristRouteId'>()
   // 因為useParams只能傳入string
   // 如果要使用interface就需要加 keyof
+
   let { touristRouteId } = useParams<keyof MatchParams2>()
-  const [loading, setLoading] = useState<boolean>(true)
-  const [product, setProduct] = useState<any>(null)
-  const [error, setError] = useState<string | null>(null)
+
+  // const [loading, setLoading] = useState<boolean>(true)
+  // const [product, setProduct] = useState<any>(null)
+  // const [error, setError] = useState<string | null>(null)
+
+  const loading = useSelector((state) => state.productDetail.loading)
+  const error = useSelector((state) => state.productDetail.error)
+  const product = useSelector((state) => state.productDetail.data)
+
+  const dispatch = useAppDispatch()
 
   const { RangePicker } = DatePicker
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true)
-        const { data } = await axios.get(`http://123.56.149.216:8080/api/touristRoutes/${touristRouteId}`)
-        setProduct(data)
-        setLoading(false)
-      } catch (error) {
-        setError(error instanceof Error ? error.message : "error")
-        setLoading(false)
-      }
+    if (touristRouteId) {
+      dispatch(getProductDetail(touristRouteId))
     }
-
-    fetchData()
   }, [])
 
   if (loading) {
@@ -107,7 +108,7 @@ export const DetailPage: React.FC = () => {
           </Menu>
         </Anchor>
         {/* 產品特色 */}
-        <div id='feature' className={styles['product-detail-container']}>
+        <div id="feature" className={styles['product-detail-container']}>
           <Divider orientation={'center'}>
             <Typography.Title level={3}>產品特色</Typography.Title>
           </Divider>
@@ -115,21 +116,21 @@ export const DetailPage: React.FC = () => {
           <div dangerouslySetInnerHTML={{__html: product.features}} style={{ margin: 50 }}></div>
         </div>
         {/* 費用 */}
-        <div id='fees' className={styles['product-detail-container']}>
+        <div id="fees" className={styles['product-detail-container']}>
           <Divider orientation={'center'}>
             <Typography.Title level={3}>費用</Typography.Title>
           </Divider>
           <div dangerouslySetInnerHTML={{__html: product.fees}} style={{ margin: 50 }}></div>
         </div>
         {/* 預定須知 */}
-        <div id='notes' className={styles['product-detail-container']}>
+        <div id="notes" className={styles['product-detail-container']}>
           <Divider orientation={'center'}>
             <Typography.Title level={3}>預定須知</Typography.Title>
           </Divider>
           <div dangerouslySetInnerHTML={{__html: product.notes}} style={{ padding: 20 }}></div>
         </div>
         {/* 商品評價 */}
-        <div id='comments' className={styles['product-detail-container']}>
+        <div id="comments" className={styles['product-detail-container']}>
           <Divider orientation={'center'}>
             <Typography.Title level={3}>用戶評論</Typography.Title>
           </Divider>

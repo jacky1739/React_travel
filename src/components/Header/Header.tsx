@@ -12,6 +12,7 @@ import { useDispatch } from 'react-redux'
 // import { LanguageActionTypes } from '../../redux/language/languageActions'
 import { changeLanguageActionCreator, addLanguageActionCreator } from '../../redux/language/languageActions'
 import { useTranslation } from 'react-i18next'
+import { keyboard } from '@testing-library/user-event/dist/keyboard'
 
 export const Header = () => {
   const navigate = useNavigate() // 進行頁面的處理
@@ -82,7 +83,7 @@ export const Header = () => {
         <Layout.Header className={styles['main-header']}>
           <img src={logo} alt="" className={styles['App-logo']} />
           <Typography.Title level={3} className={styles.title}>{t("header.title")}</Typography.Title>
-          <Input.Search className={styles['search-input']} placeholder={'清輸入旅遊目的, 主題, 或關鍵字'}></Input.Search>
+          <Input.Search className={styles['search-input']} placeholder={'清輸入旅遊目的, 主題, 或關鍵字'} onSearch={(keyword) => navigate("/search/" + keyword)} />
         </Layout.Header>
         <Menu mode={'horizontal'} className={styles['main-menu']}
           items={menu}
