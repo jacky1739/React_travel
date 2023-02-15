@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { List, Rate, Space, Image, Tag, Typography } from "antd";
-import { LikeOutlined, StarOutlined } from "@ant-design/icons";
+import { MessageOutlined, LikeOutlined, StarOutlined } from "@ant-design/icons";
 
 const { Text } = Typography;
 
@@ -21,7 +21,6 @@ interface Product {
 interface PropsType {
   data: Product[];
   paging: any;
-  onPageChange?: (nextPage, pageSize) => void;
 }
 
 const listData = (productList: Product[]) =>
@@ -54,25 +53,18 @@ const IconText = ({ icon, text }) => (
 export const ProductList: React.FC<PropsType> = ({
   data,
   paging,
-  onPageChange,
+  // onPageChange,
 }) => {
   const products = listData(data);
   return (
     <List
       itemLayout="vertical"
       size="large"
-      pagination={{
-        current: paging.currentPage,
-        onChange: (page) => onPageChange && onPageChange(page, paging.pageSize),
-        pageSize: paging.pageSize,
-        total: paging.totalCount,
-      }}
+      // pagination={{
+      //   current: paging.currentPage,
+      //   total: paging.totalCount,
+      // }}
       dataSource={products}
-      footer={
-        <div>
-          搜索总路线: <Text strong>{paging.totalCount}</Text> 条
-        </div>
-      }
       renderItem={(item) => (
         <List.Item
           key={item.title}

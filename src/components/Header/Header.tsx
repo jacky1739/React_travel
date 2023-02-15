@@ -3,7 +3,7 @@ import logo from '../../assets/logo.svg'
 import { Layout, Typography, Input, Menu, Button, Dropdown } from 'antd'
 import { GlobalOutlined } from '@ant-design/icons'
 import styles from './Header.module.css'
-import { useParams, useLocation, useNavigate } from 'react-router-dom'
+import { useParams, useLocation, useNavigate, Link } from 'react-router-dom'
 
 import { useSelector } from '../../redux/hooks'
 import { useDispatch } from 'react-redux'
@@ -30,6 +30,10 @@ export const Header = () => {
     } else {
       dispatch(changeLanguageActionCreator(e.key))
     }
+  }
+
+  const test = () => {
+    console.log('click')
   }
 
   const menu = [
@@ -83,7 +87,7 @@ export const Header = () => {
         <Layout.Header className={styles['main-header']}>
           <img src={logo} alt="" className={styles['App-logo']} />
           <Typography.Title level={3} className={styles.title}>{t("header.title")}</Typography.Title>
-          <Input.Search className={styles['search-input']} placeholder={'清輸入旅遊目的, 主題, 或關鍵字'} onSearch={(keyword) => navigate("/search/" + keyword)} />
+          <Input.Search className={styles['search-input']} placeholder={'清輸入旅遊目的, 主題, 或關鍵字'} onSearch={(keyword) => navigate("/search/" + keyword)}></Input.Search>
         </Layout.Header>
         <Menu mode={'horizontal'} className={styles['main-menu']}
           items={menu}

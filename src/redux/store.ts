@@ -5,7 +5,7 @@ import recommendProductsReducer from './recommendProducts/recommendProductsReduc
 import { actionLog } from './middlewares/actionLog'
 import { productDetailSlice } from './productDetail/slice'
 import { combineReducers, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
-import { productSearchSlice } from './ProductSearch/slice'
+import { productSearchSlice } from './productSearch/slice'
 
 
 // rootReducer這名字是約定俗成的名稱
@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
   language: languageReducer,
   recommendProducts: recommendProductsReducer,
   productDetail: productDetailSlice.reducer,
-  productSearch: productSearchSlice.reducer
+  productSearchSlice: productSearchSlice.reducer
 })
 
 // const store = createStore(rootReducer, applyMiddleware(thunk, actionLog)) -> redux的store
