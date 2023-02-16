@@ -23,7 +23,11 @@ export const searchProduct = createAsyncThunk(
     keywords: string,
     nextPage: number | string
   }) => {
-    let url = `http://123.56.149.216:8080/api/touristRoutes?keyword=${paramaters.keywords}`
+    let url = `http://123.56.149.216:8080/api/touristRoutes`
+
+    if (paramaters.keywords) {
+      url += `?keyword=${paramaters.keywords}`
+    }
     
     const response = await axios.get(url)
     // 返回的是一個promise, getProductDetail這個函數就會自動生成pending, fulfilled, rejected這三個action

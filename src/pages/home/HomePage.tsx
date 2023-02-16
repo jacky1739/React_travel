@@ -22,6 +22,8 @@ import {
   giveMeDataActionCreator
 } from '../../redux/recommendProducts/recommendProductsActions'
 
+import { MainLayout } from '../../layout/mainLayout'
+
 export const HomePage = () => {
   const { t } = useTranslation()
   const loading = useSelector((state) => state.recommendProducts.loading)
@@ -67,9 +69,7 @@ export const HomePage = () => {
 
   return (
     <div>
-      <Header />
-      {/* 頁面內容 */}
-      <div className={styles['page-content']}>
+      <MainLayout>
         <Row style={{marginTop: 20}}>
           <Col span={6}>
             <SideMenu />
@@ -96,8 +96,7 @@ export const HomePage = () => {
         <BusinessPartners
           title={<Typography.Title level={3} type="success">{t('footer.collaboration')}</Typography.Title>}
         />
-      </div>
-      <Footer />
+      </MainLayout>
     </div>
   )
 }
