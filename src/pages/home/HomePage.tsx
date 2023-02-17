@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
-import { Header, Footer, Carousel, SideMenu, ProductCollection, BusinessPartners } from '../../components'
+import { Carousel, SideMenu, ProductCollection, BusinessPartners } from '../../components'
 import { Row, Col, Typography, Spin } from 'antd'
-import styles from './HomePage.module.css'
 
 // import { productList1, productList2, productList3 } from './mockups'
 

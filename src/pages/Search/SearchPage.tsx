@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import styles from './SearchPage.module.css'
-import { Header, Footer, ProductList } from '../../components'
+import { ProductList } from '../../components'
 import { useLocation, useParams } from 'react-router-dom'
 import { Spin } from 'antd'
 import { searchProduct } from '../../redux/productSearch/slice'
