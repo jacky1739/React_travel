@@ -13,11 +13,11 @@ export const RegisterForm = () => {
       await axios.post("http://123.56.149.216:8080/auth/register", {
         email: values.username,
         password: values.password,
-        confrimPassword: values.confirm
-      })
+        confirmPassword: values.confirm,
+      });
       navigate('/signin')
     } catch (error) {
-      alert("註冊失敗！！" + error)
+      alert("注册失败！");
     }
   }
   
