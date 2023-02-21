@@ -37,6 +37,11 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+    logOut: (state) => {
+      state.token = null
+      state.error = null
+      state.loading = false
+    }
   },
   extraReducers: {
     // 因為typescript的定義 所以需要加上.type

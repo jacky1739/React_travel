@@ -20,7 +20,10 @@
         "enterprise":"企业游",
         "high_end":"高端游",
         "outdoor":"爱玩户外",
-        "insurance":"保险"
+        "insurance":"保险",
+        "shoppingCart": "購物車",
+        "signOut": "註銷",
+        "welcome": "歡迎回來"
     },
     "footer": {
         "detail" : "版权所有 @ React 旅游网",

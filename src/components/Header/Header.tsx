@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import logo from '../../assets/logo.svg'
 import { Layout, Typography, Input, Menu, Button, Dropdown } from 'antd'
 import { GlobalOutlined } from '@ant-design/icons'
@@ -12,7 +12,13 @@ import { useDispatch } from 'react-redux'
 // import { LanguageActionTypes } from '../../redux/language/languageActions'
 import { changeLanguageActionCreator, addLanguageActionCreator } from '../../redux/language/languageActions'
 import { useTranslation } from 'react-i18next'
-import { keyboard } from '@testing-library/user-event/dist/keyboard'
+
+import jwt_decode, { JwtPayload as DefaultJwtPayload } from "jwt-decode"
+import { userSlice } from '../../redux/user/slice'
+
+interface JwtPayload extends DefaultJwtPayload {
+  username: string
+}
 
 export const Header = () => {
   const navigate = useNavigate() // 進行頁面的處理
@@ -23,6 +29,17 @@ export const Header = () => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
 
+  const jwt = useSelector((state) => state.user.token)
+  const [ username, setUsername ] = useState("")
+
+  useEffect(() => {
+    if (jwt) {
+      const token = jwt_decode<JwtPayload>(jwt)
+      setUsername(token.username)
+      console.log(username)
+    }
+  }, [jwt])
+
   const menuClickHandler = (e) => {
     console.log(e.key)
     if (e.key === "new") {
@@ -30,10 +47,6 @@ export const Header = () => {
     } else {
       dispatch(changeLanguageActionCreator(e.key))
     }
-  }
-
-  const test = () => {
-    console.log('click')
   }
 
   const menu = [
@@ -55,35 +68,52 @@ export const Header = () => {
     { key: "16", label: t("header.insurance") }
   ]
 
+  const onLogout = () => {
+    dispatch(userSlice.actions.logOut())
+    navigate("/")
+    window.location.reload() // 可加可不加
+  }
+
   return(
     <div className={styles['app-header']}>
-        {/* top-header */}
-        <div className={styles['top-header']}>
-          <div className={styles.inner}>
-            {/* <Typography.Text>讓旅遊更幸福</Typography.Text> */}
-            <Typography.Text className={styles['header-title-slogan']}>{t('header.slogan')}</Typography.Text>
-            <Dropdown.Button
-              style={{ marginLeft: 15, width: '90%' }}
-              overlay={
-                <Menu onClick={menuClickHandler}>
-                  {languageList.map(language => {
-                    return <Menu.Item key={language.code}>{language.name}</Menu.Item>
-                  })}
-                  <Menu.Item key={"new"}>
-                    {t("header.add_new_language")}
-                  </Menu.Item>
-                </Menu>
-              }
-              icon={<GlobalOutlined />}
-            >
-              {language === "zh" ? "中文" : "English"}
-            </Dropdown.Button>
-          </div>
+      {/* top-header */}
+      <div className={styles['top-header']}>
+        <div className={styles.inner}>
+          {/* <Typography.Text>讓旅遊更幸福</Typography.Text> */}
+          <Typography.Text className={styles['header-title-slogan']}>{t('header.slogan')}</Typography.Text>
+          <Dropdown.Button
+            style={{ marginLeft: 15, width: '90%' }}
+            overlay={
+              <Menu onClick={menuClickHandler}>
+                {languageList.map(language => {
+                  return <Menu.Item key={language.code}>{language.name}</Menu.Item>
+                })}
+                <Menu.Item key={"new"}>
+                  {t("header.add_new_language")}
+                </Menu.Item>
+              </Menu>
+            }
+            icon={<GlobalOutlined />}
+          >
+            {language === "zh" ? "中文" : "English"}
+          </Dropdown.Button>
+        </div>
+        { jwt ? (
+          <Button.Group className={styles['button-group']}>
+            <span className={styles['header-title-slogan']}>{t("header.welcome")}</span>
+            {/* <Typography.Text className={styles['header-title-slogan']}>{t("header.welcome")}</Typography.Text> */}
+            <Typography.Text className={styles['header-title-slogan']}>{username}</Typography.Text>
+            <Button>{t("header.shoppingCart")}</Button>
+            <Button onClick={onLogout}>{t("header.signOut")}</Button>
+          </Button.Group>
+          ) : (
           <Button.Group className={styles['button-group']}>
             <Button onClick={() => navigate('/register')}>{t("header.register")}</Button>
             <Button onClick={() => navigate('/signin')}>{t("header.signin")}</Button>
           </Button.Group>
-        </div>
+          )
+        }
+      </div>
         <Layout.Header className={styles['main-header']}>
           <img src={logo} alt="" className={styles['App-logo']} />
           <Typography.Title level={3} className={styles.title}>{t("header.title")}</Typography.Title>

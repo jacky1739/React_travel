@@ -25,6 +25,7 @@ export const SignInForm: React.FC = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
+    console.log(jwt)
     if (jwt !== undefined && jwt !== null) {
       navigate('/')
     }
@@ -36,7 +37,6 @@ export const SignInForm: React.FC = () => {
       email: values.username,
       password: values.password
     }))
-    console.log(values.username, values.password)
   }
 
   const onFinishFailed = (errorInfo: any) => {
