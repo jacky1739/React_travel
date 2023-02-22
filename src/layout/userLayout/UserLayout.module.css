@@ -8,6 +8,7 @@
 
 .header {
     background: transparent !important;
+    display: flex ! important;
 }
 
 .header .lang {

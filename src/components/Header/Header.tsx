@@ -71,7 +71,6 @@ export const Header = () => {
   const onLogout = () => {
     dispatch(userSlice.actions.logOut())
     navigate("/")
-    window.location.reload() // 可加可不加
   }
 
   return(
@@ -79,8 +78,6 @@ export const Header = () => {
       {/* top-header */}
       <div className={styles['top-header']}>
         <div className={styles.inner}>
-          {/* <Typography.Text>讓旅遊更幸福</Typography.Text> */}
-          <Typography.Text className={styles['header-title-slogan']}>{t('header.slogan')}</Typography.Text>
           <Dropdown.Button
             style={{ marginLeft: 15, width: '90%' }}
             overlay={
@@ -100,9 +97,9 @@ export const Header = () => {
         </div>
         { jwt ? (
           <Button.Group className={styles['button-group']}>
-            <span className={styles['header-title-slogan']}>{t("header.welcome")}</span>
-            {/* <Typography.Text className={styles['header-title-slogan']}>{t("header.welcome")}</Typography.Text> */}
-            <Typography.Text className={styles['header-title-slogan']}>{username}</Typography.Text>
+            {/* <span>{t("header.welcome")}</span> */}
+            <Typography.Text>{username}</Typography.Text>
+            {/* <Typography.Text className={styles['header-title-slogan']}>{username}</Typography.Text> */}
             <Button>{t("header.shoppingCart")}</Button>
             <Button onClick={onLogout}>{t("header.signOut")}</Button>
           </Button.Group>
