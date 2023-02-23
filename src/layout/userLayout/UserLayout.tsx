@@ -6,6 +6,7 @@ import { CaretDownOutlined } from "@ant-design/icons";
 import { Layout, Menu, Dropdown, Button } from "antd";
 const { Header, Footer, Content } = Layout;
 
+// 在react 18中 必須加上類型定義
 interface PropsTypes {
   children: React.ReactNode;
 }

@@ -100,13 +100,13 @@ export const Header = () => {
             {/* <span>{t("header.welcome")}</span> */}
             <Typography.Text>{username}</Typography.Text>
             {/* <Typography.Text className={styles['header-title-slogan']}>{username}</Typography.Text> */}
-            <Button>{t("header.shoppingCart")}</Button>
+            <Button onClick={() => navigate("/shoppingCart")}>{t("header.shoppingCart")}</Button>
             <Button onClick={onLogout}>{t("header.signOut")}</Button>
           </Button.Group>
           ) : (
           <Button.Group className={styles['button-group']}>
-            <Button onClick={() => navigate('/register')}>{t("header.register")}</Button>
-            <Button onClick={() => navigate('/signin')}>{t("header.signin")}</Button>
+            <Button onClick={() => navigate("/register")}>{t("header.register")}</Button>
+            <Button onClick={() => navigate("/signin")}>{t("header.signin")}</Button>
           </Button.Group>
           )
         }

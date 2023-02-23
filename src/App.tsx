@@ -1,7 +1,15 @@
 import React from 'react'
 import styles from './App.module.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom' 
-import { HomePage, SignInPage, RegisterPage, DetailPage, SearchPage } from './pages'
+import { HomePage, SignInPage, RegisterPage, DetailPage, SearchPage, ShoppingCartPage } from './pages'
+import { Navigate } from 'react-router-dom'
+import { useSelector } from './redux/hooks'
+
+// 使用函數式元件的方式來創建私有路由
+const PrivateRoute = ({ children }) => {
+  const jwt = useSelector(state => state.user.token)
+  return jwt ? children : <Navigate to="/signin" />
+}
 
 const App: React.FC = () => {
 
@@ -14,6 +22,13 @@ const App: React.FC = () => {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/detail/:touristRouteId" element={<DetailPage />} />
           <Route path="/search/:keywords" element={<SearchPage />} />
+          <Route path="/shoppingCart"
+            element={
+              <PrivateRoute>
+                <ShoppingCartPage />
+              </PrivateRoute>
+            }
+          />
           <Route path="*" element={<h1>404 not found 頁面去火星了</h1>} />
         </Routes>
       </BrowserRouter>

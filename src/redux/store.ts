@@ -7,7 +7,7 @@ import { productDetailSlice } from './productDetail/slice'
 import { combineReducers, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import { productSearchSlice } from './productSearch/slice'
 import { userSlice } from './user/slice'
-
+// 引入redux-persist
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // local storage必須從這裡引入
 
@@ -28,7 +28,7 @@ const rootReducer = combineReducers({
   productSearchSlice: productSearchSlice.reducer,
   user: userSlice.reducer
 })
-
+// 必須有兩個參數
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 // const store = createStore(rootReducer, applyMiddleware(thunk, actionLog)) -> redux的store
@@ -38,11 +38,13 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(actionLog),
   devTools: true
 })
-
+// 使用persisStore創造一個持久化的store
 const persistor = persistStore(store)
 
 // store 的類型
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
 
-export default {store, persistor}
+const rootStore = {store, persistor}
+
+export default rootStore
