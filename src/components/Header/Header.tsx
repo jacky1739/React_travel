@@ -76,7 +76,6 @@ export const Header = () => {
   }
 
   console.log(shoppingCartItems)
-  console.log(shoppingCartItems[0])
 
   return(
     <div className={styles['app-header']}>

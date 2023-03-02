@@ -3,9 +3,9 @@ import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 interface ShoppingCartState {
-    loading: boolean
-    error: string | null
-    items: any[]
+  loading: boolean
+  error: string | null
+  items: any[]
 }
 
 const initialState: ShoppingCartState = {
@@ -32,9 +32,8 @@ export const getShoppingCart = createAsyncThunk(
 )
 
 export const addShoppingCartItem = createAsyncThunk(
-  // 前面為 name , 後面為這個 action 的名稱
   "shoppingCart/addShoppingCartItem",
-  async (parameters: {jwt: string, touristRouteId: string}, thunkAPI) => {
+  async (parameters: { jwt: string, touristRouteId: string }, thunkAPI) => {
     const { data } = await axios.post(
       `http://123.56.149.216:8080/api/shoppingCart/items`,
       {
@@ -46,14 +45,13 @@ export const addShoppingCartItem = createAsyncThunk(
         }
       }
     )
-    // 返回的是一個promise, getProductDetail這個函數就會自動生成pending, fulfilled, rejected這三個action
     return data.shoppingCartItems
   }
 )
 
 export const clearShoppingCartItem = createAsyncThunk(
   // 前面為 name , 後面為這個 action 的名稱
-  "shoppingCart/addShoppingCartItem",
+  "shoppingCart/clearShoppingCartItem",
   async (parameters: {jwt: string, itemIds: number[]}, thunkAPI) => {
       return await axios.delete(
       `http://123.56.149.216:8080/api/shoppingCart/items/(${parameters.itemIds.join(",")})`,

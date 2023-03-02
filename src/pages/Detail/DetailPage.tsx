@@ -51,6 +51,8 @@ export const DetailPage: React.FC = () => {
     }
   }, [])
 
+  // console.log(jwt ,product.id)
+
   if (loading) {
     return (
       <Spin
@@ -96,7 +98,7 @@ export const DetailPage: React.FC = () => {
               danger
               loading={shoppingCartLoading}
               onClick={() => {
-                dispatch(addShoppingCartItem({jwt, touristRouteId: product.id}))
+                dispatch(addShoppingCartItem({ jwt ,touristRouteId: product.id }))
               }}
             >
               <ShoppingCartOutlined />

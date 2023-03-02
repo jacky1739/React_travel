@@ -19,7 +19,6 @@ const App: React.FC = () => {
   useEffect(() => {
     if (jwt) {
       dispatch(getShoppingCart(jwt))
-      console.log(jwt)
     }
   }, [jwt])
 
