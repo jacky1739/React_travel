@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './App.module.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom' 
 import { HomePage, SignInPage, RegisterPage, DetailPage, SearchPage, ShoppingCartPage } from './pages'
 import { Navigate } from 'react-router-dom'
-import { useSelector } from './redux/hooks'
+import { useSelector, useAppDispatch } from './redux/hooks'
+import { getShoppingCart } from './redux/shoppingCart/slice'
 
 // 使用函數式元件的方式來創建私有路由
 const PrivateRoute = ({ children }) => {
@@ -12,6 +13,15 @@ const PrivateRoute = ({ children }) => {
 }
 
 const App: React.FC = () => {
+  const jwt = useSelector(state => state.user.token)
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    if (jwt) {
+      dispatch(getShoppingCart(jwt))
+      console.log(jwt)
+    }
+  }, [jwt])
 
   return (
     <div className={styles.App}>

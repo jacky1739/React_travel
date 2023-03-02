@@ -32,11 +32,13 @@ export const Header = () => {
   const jwt = useSelector((state) => state.user.token)
   const [ username, setUsername ] = useState("")
 
+  const shoppingCartItems = useSelector(state => state.shoppingCart.items)
+  const shoppingCartLoading = useSelector(state => state.shoppingCart.loading)
+
   useEffect(() => {
     if (jwt) {
       const token = jwt_decode<JwtPayload>(jwt)
       setUsername(token.username)
-      console.log(username)
     }
   }, [jwt])
 
@@ -73,6 +75,9 @@ export const Header = () => {
     navigate("/")
   }
 
+  console.log(shoppingCartItems)
+  console.log(shoppingCartItems[0])
+
   return(
     <div className={styles['app-header']}>
       {/* top-header */}
@@ -100,7 +105,7 @@ export const Header = () => {
             {/* <span>{t("header.welcome")}</span> */}
             <Typography.Text>{username}</Typography.Text>
             {/* <Typography.Text className={styles['header-title-slogan']}>{username}</Typography.Text> */}
-            <Button onClick={() => navigate("/shoppingCart")}>{t("header.shoppingCart")}</Button>
+            <Button loading={shoppingCartLoading} onClick={() => navigate("/shoppingCart")}>{t("header.shoppingCart")}({shoppingCartItems.length})</Button>
             <Button onClick={onLogout}>{t("header.signOut")}</Button>
           </Button.Group>
           ) : (

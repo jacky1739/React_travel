@@ -12,7 +12,7 @@ import axios from 'axios'
 // 這像普通的元件一樣 可直接在jsx中使用
 import { PersistGate } from 'redux-persist/integration/react'
 
-axios.defaults.headers['x-icode'] = '9E7F79B29CC4307E'
+axios.defaults.headers['x-icode'] = 'BD4EE4AC835DB9CD'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
