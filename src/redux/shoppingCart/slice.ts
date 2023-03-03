@@ -50,7 +50,6 @@ export const addShoppingCartItem = createAsyncThunk(
 )
 
 export const clearShoppingCartItem = createAsyncThunk(
-  // 前面為 name , 後面為這個 action 的名稱
   "shoppingCart/clearShoppingCartItem",
   async (parameters: {jwt: string, itemIds: number[]}, thunkAPI) => {
       return await axios.delete(
