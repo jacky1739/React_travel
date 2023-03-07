@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import styles from './App.module.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom' 
-import { HomePage, SignInPage, RegisterPage, DetailPage, SearchPage, ShoppingCartPage } from './pages'
+import { HomePage, SignInPage, RegisterPage, DetailPage, SearchPage, ShoppingCartPage, PlaceOrderPage } from './pages'
 import { Navigate } from 'react-router-dom'
 import { useSelector, useAppDispatch } from './redux/hooks'
 import { getShoppingCart } from './redux/shoppingCart/slice'
@@ -35,6 +35,13 @@ const App: React.FC = () => {
             element={
               <PrivateRoute>
                 <ShoppingCartPage />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/placeOrder"
+            element={
+              <PrivateRoute>
+                <PlaceOrderPage />
               </PrivateRoute>
             }
           />

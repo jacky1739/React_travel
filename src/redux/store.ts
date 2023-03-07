@@ -11,6 +11,7 @@ import { userSlice } from './user/slice'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // local storage必須從這裡引入
 import { shoppingCartSlice  } from './shoppingCart/slice'
+import { orderSlice } from './order/slice'
 
 
 
@@ -28,7 +29,8 @@ const rootReducer = combineReducers({
   productDetail: productDetailSlice.reducer,
   productSearchSlice: productSearchSlice.reducer,
   user: userSlice.reducer,
-  shoppingCart: shoppingCartSlice.reducer
+  shoppingCart: shoppingCartSlice.reducer,
+  order: orderSlice.reducer
 })
 // 必須有兩個參數
 const persistedReducer = persistReducer(persistConfig, rootReducer)

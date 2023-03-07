@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
+ import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
 // 如果要使用自定義action, 就可以使用PayloadAction
 import axios from 'axios'
 
@@ -45,6 +45,7 @@ export const addShoppingCartItem = createAsyncThunk(
         }
       }
     )
+    console.log(data.shoppingCartItems)
     return data.shoppingCartItems
   }
 )
@@ -60,6 +61,22 @@ export const clearShoppingCartItem = createAsyncThunk(
         }
       }
     )
+  }
+)
+
+export const checkout = createAsyncThunk(
+  "shoppingCart/checkout",
+  async (jwt: string, thunkAPI) => {
+    const { data } = await axios.post(
+      `http://123.56.149.216:8080/api/shoppingCart/checkout`,
+      null, // 因為不需要 body
+      {
+        headers: {
+          Authorization: `bearer ${jwt}`
+        }
+      }
+    )
+    return data
   }
 )
 
@@ -110,6 +127,21 @@ export const shoppingCartSlice = createSlice({
     },
     // PayloadAction 是自定義action類型
     [clearShoppingCartItem.rejected.type]: (state, action: PayloadAction<string | null>) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    [checkout.pending.type]: (state) => {
+      // return  { ...state, loading: true }
+      // 使用 immer 就可以直接更改數值
+      state.loading = true
+    },
+    [checkout.fulfilled.type]: (state, action) => {
+      state.items = []
+      state.loading = false
+      state.error = null
+    },
+    // PayloadAction 是自定義action類型
+    [checkout.rejected.type]: (state, action: PayloadAction<string | null>) => {
       state.loading = false
       state.error = action.payload
     },
