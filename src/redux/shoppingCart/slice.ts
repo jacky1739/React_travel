@@ -136,7 +136,7 @@ export const shoppingCartSlice = createSlice({
       state.loading = true
     },
     [checkout.fulfilled.type]: (state, action) => {
-      state.items = []
+      state.items = [] // 下單後把資料清空
       state.loading = false
       state.error = null
     },

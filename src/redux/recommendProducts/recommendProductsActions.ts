@@ -52,7 +52,7 @@ export const giveMeDataActionCreator = (): ThunkAction<void, RootState, unknown,
   try {
     const { data } = await axios.get("http://123.56.149.216:8080/api/productCollections", {
       headers: {
-        "x-icode": "BD4EE4AC835DB9CD"
+        "x-icode": "750961243534B86B"
       }
     })
     dispatch(fetchRecommendProductSuccessActionCreator(data))
