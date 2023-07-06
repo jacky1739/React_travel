@@ -75,12 +75,12 @@ export const ProductCollection: React.FC<PropsType> = ({title, sideImage, produc
           <Row>
             <Col span={6}>
             <ProductImage 
-                    id={products[5].id}
-                    size={"small"}
-                    title={products[5].title}
-                    imageSrc={products[5].touristRoutePictures[0].url}
-                    price={products[5].price}
-                  />
+              id={products[5].id}
+              size={"small"}
+              title={products[5].title}
+              imageSrc={products[5].touristRoutePictures[0].url}
+              price={products[5].price}
+            />
             </Col>
             <Col span={6}>
               <ProductImage 
