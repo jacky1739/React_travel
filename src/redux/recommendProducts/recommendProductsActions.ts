@@ -47,14 +47,14 @@ export const fetchRecommendProductFailActionCreator = (error): RecommendProductA
   }
 }
 
+// thunk 可以返回一個函數, 而不一定是js對象
+// 在一個thunk action中可以完成一些連續的action操作
+// 並且還可以處理非同步的邏輯
+// 業務邏輯可以從ui層面挪到這裡, 程式分層會更清晰
 export const giveMeDataActionCreator = (): ThunkAction<void, RootState, unknown, RecommendProductAction> => async(dispatch, getState) => {
   dispatch(fetchRecommendProductStartActionCreator())
   try {
-    const { data } = await axios.get("http://123.56.149.216:8080/api/productCollections", {
-      headers: {
-        "x-icode": "750961243534B86B"
-      }
-    })
+    const { data } = await axios.get("http://123.56.149.216:8080/api/productCollections")
     dispatch(fetchRecommendProductSuccessActionCreator(data))
   } catch (error) {
     if (error instanceof Error) {

@@ -14,16 +14,16 @@ export const RegisterForm = () => {
         email: values.username,
         password: values.password,
         confirmPassword: values.confirm,
-      });
+      })
       navigate('/signin')
     } catch (error) {
-      alert("注册失败！");
+      alert("注册失败！")
     }
   }
   
   const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
-  };
+    console.log('Failed:', errorInfo)
+  }
 
   return (
   <Form
@@ -58,6 +58,7 @@ export const RegisterForm = () => {
     <Form.Item
       label="Confirm Password"
       name="confirm"
+      hasFeedback
       rules={[
         { required: true, message: 'Please input your confrim password!' },
         // 需要使用函數來驗證 用大括號展開取得getFieldValue這個函數

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { Spin, Row, Col, DatePicker, Divider, Typography, Anchor, Menu, Space, Button } from 'antd'
+import { Spin, Row, Col, DatePicker, Divider, Typography, Anchor, Menu, Button } from 'antd'
 import { ShoppingCartOutlined } from '@ant-design/icons'
 import styles from './Detail.module.css'
 import { ProductIntro, ProductComments } from '../../components'

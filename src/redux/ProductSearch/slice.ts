@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
 // 如果要使用自定義action, 就可以使用PayloadAction
-import axios, { responseEncoding } from 'axios'
+import axios from 'axios'
 
 interface ProductSearchState {
   data: any
@@ -34,8 +34,8 @@ export const searchProduct = createAsyncThunk(
     console.log(response)
     // return response
     return {
-        data: response.data,
-        pagination: response.headers["x-pagination"]
+      data: response.data,
+      pagination: response.headers["x-pagination"]
     }
   }
 )
